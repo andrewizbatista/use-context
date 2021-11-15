@@ -78,12 +78,16 @@ const schema: ContextSchema<UserState, UserActions> = {
     email: '',
   },
   actions: ({ state, setState }) => ({
-    // Fetches a user from a mocked API and set the state
+    /**
+     * Fetches a user from a mocked API
+     */
     fetchUser: (id) =>
       fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => res.json())
         .then((data) => setState(data as UserState)),
-    // Returns a string that contains the `username` and `email` of the user
+    /**
+     * Returns a formatted string that contains the `username` and the `email`
+     */
     getFormattedUserLine: () => `${state.username} <${state.email}>`,
   }),
 };
@@ -91,30 +95,16 @@ const schema: ContextSchema<UserState, UserActions> = {
 /**
  * Step 3
  *
- * Use the `createContextFromSchema` to generate a `Context`
- * and its respective `useContext` hook.
+ * Use the `createContextFromSchema` to generate the `Context`, `Provider` and `useContext`
+ * for the context you are creating.
  *
  * Tip: In ES6 you can rename your object keys!
  */
-export const { Context: UserContext, useContext: useUserContext } = createContextFromSchema<
-  UserState,
-  UserActions
->(schema);
-
-/**
- * Step 4
- *
- * Create a `Provider` based on a `ContextProvider<State, Actions>` so it can
- * handle all the `state` logic.
- */
-export const UserProvider = ({ children }: UserProviderProps) => (
-  <ContextProvider<UserState, UserActions> schema={schema} Context={UserContext}>
-    {children}
-  </ContextProvider>
-);
-export interface UserProviderProps {
-  children: ReactNode;
-}
+export const {
+  Context: UserContext,
+  Provider: UserProvider,
+  useContext: useUser,
+} = createContextFromSchema<UserState, UserActions>(schema);
 ```
 
 ### <a name="usage/advanced"></a>Advanced Example (`UserContext`)
@@ -124,10 +114,12 @@ In some cases you might want to have a **child Context/Provider** that uses the 
 ```tsx
 // Example where the `UserPermissionsProvider` needs the `state` (user) from the parent `Context`
 
-export const UserProvider = ({ children }: UserProviderProps) => (
-  <ContextProvider<State, Actions> schema={schema} Context={UserContext}>
-    {({ state }) => <UserPermissionsProvider value={state}>{children}</UserPermissionsProvider>}
-  </ContextProvider>
+const App = () => (
+  <UserProvider>
+    {({ state: userState }) => (
+      <UserPermissionsProvider value={userState}>{children}</UserPermissionsProvider>
+    )}
+  </UserProvider>
 );
 ```
 
