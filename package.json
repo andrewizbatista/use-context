@@ -1,5 +1,5 @@
 {
-  "name": "@andrewizbatista/PACKAGE_NAME",
+  "name": "@andrewizbatista/create-context",
   "version": "0.0.0-development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewizbatista/PACKAGE_NAME"
+    "url": "https://github.com/andrewizbatista/create-context"
   },
   "author": {
     "name": "André Batista",
     "email": "hi@andrebatista.dev",
     "url": "https://github.com/andrewizbatista"
   },
-  "homepage": "https://github.com/andrewizbatista/PACKAGE_NAME#readme",
+  "homepage": "https://github.com/andrewizbatista/create-context#readme",
   "bugs": {
-    "url": "https://github.com/andrewizbatista/PACKAGE_NAME/issues"
+    "url": "https://github.com/andrewizbatista/create-context/issues"
   },
   "files": [
     "dist"
