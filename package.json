@@ -1,0 +1,75 @@
+{
+  "name": "@andrewizbatista/PACKAGE_NAME",
+  "version": "0.0.0-development",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewizbatista/PACKAGE_NAME"
+  },
+  "author": {
+    "name": "André Batista",
+    "email": "hi@andrebatista.dev",
+    "url": "https://github.com/andrewizbatista"
+  },
+  "homepage": "https://github.com/andrewizbatista/PACKAGE_NAME#readme",
+  "bugs": {
+    "url": "https://github.com/andrewizbatista/PACKAGE_NAME/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --write .",
+    "lint:staged": "lint-staged",
+    "lint:typescript": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "babel-jest": "^27.3.1",
+    "eslint": "^8.1.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.2.6",
+    "pinst": "^2.1.6",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
+    "semantic-release": "^18.0.0",
+    "typescript": "^4.4.4"
+  },
+  "keywords": [
+    "react"
+  ]
+}

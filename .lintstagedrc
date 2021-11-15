@@ -1,0 +1,7 @@
+{
+  "*.{ts,tsx,d.ts}": [
+    "yarn lint:typescript",
+    "yarn lint:eslint",
+    "yarn lint:prettier"
+  ]
+}

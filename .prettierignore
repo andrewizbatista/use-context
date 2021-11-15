@@ -1,0 +1,7 @@
+# Folders
+node_modules
+dist
+
+# Files
+package-lock.json
+yarn.lock
