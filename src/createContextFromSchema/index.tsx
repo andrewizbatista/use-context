@@ -1,13 +1,15 @@
-import { createContext, useContext, Context as ReactContext } from 'react';
-import { State, Actions, ContextSchema, ContextType } from './types';
+import React, { createContext, useContext, Context as ReactContext } from 'react';
+import { ContextProvider } from './ContextProvider';
+import { State, Actions, ContextSchema, ContextType, ProviderType } from '../types';
 
 /**
  * Function that creates a React `Context` and its respective `useContext` hook based on a `schema`.
  */
-export const createContextFromSchema = <S extends State, A extends Actions>({
-  initialState,
-  actions,
-}: ContextSchema<S, A>): CreateContextFromSchema<S, A> => {
+export const createContextFromSchema = <S extends State, A extends Actions>(
+  schema: ContextSchema<S, A>,
+): CreateContextFromSchema<S, A> => {
+  const { initialState, actions } = schema;
+
   /**
    * ContextValue Type
    */
@@ -27,15 +29,26 @@ export const createContextFromSchema = <S extends State, A extends Actions>({
   const Context = createContext<ContextValue>(contextValue);
 
   /**
+   * Provider
+   */
+  const Provider = ({ children }: ProviderType<S>) => (
+    <ContextProvider<S, A> schema={schema} Context={Context}>
+      {children}
+    </ContextProvider>
+  );
+
+  /**
    * Context & useContext
    */
   return {
     Context,
+    Provider,
     useContext: () => useContext<ContextValue>(Context),
   };
 };
 
 interface CreateContextFromSchema<S extends State, A extends Actions> {
   Context: ReactContext<ContextType<S, A>>;
+  Provider: (props: ProviderType<S>) => JSX.Element;
   useContext: () => ContextType<S, A>;
 }
