@@ -136,11 +136,13 @@ import {
    */
   UserActions,
   /**
-   * The original React Context component (you shouldn't need to use this, because of the Provider below).
+   * The original React Context component (you shouldn't need to use this,
+   * because of the Provider below).
    */
   UserContext,
   /**
-   * A smart React Context.Provider that handles all the state update/render logic
+   * A smart React Context.Provider that handles all the state
+   * update/render logic
    */
   UserProvider,
   /**
