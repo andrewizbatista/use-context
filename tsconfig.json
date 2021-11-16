@@ -20,7 +20,7 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "resolveJsonModule": true,
-    "rootDir": "src",
+    "rootDirs": ["src", "examples"],
     "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
@@ -30,5 +30,5 @@
     "target": "esnext"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "tests", "dist"]
+  "exclude": ["node_modules", "dist", "tests", "examples"]
 }

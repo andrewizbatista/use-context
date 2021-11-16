@@ -8,7 +8,7 @@
       "jsx": true
     }
   },
-  "ignorePatterns": ["tests"],
+  "ignorePatterns": ["tests", "examples"],
   "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "jsx-a11y"],
   "extends": [
     "airbnb-typescript",
