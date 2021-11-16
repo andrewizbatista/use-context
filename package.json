@@ -1,5 +1,5 @@
 {
-  "name": "@andrewizbatista/create-context",
+  "name": "@andrewizbatista/context-schema",
   "version": "0.0.0-development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewizbatista/create-context"
+    "url": "https://github.com/andrewizbatista/context-schema"
   },
   "author": {
     "name": "André Batista",
     "email": "hi@andrebatista.dev",
     "url": "https://github.com/andrewizbatista"
   },
-  "homepage": "https://github.com/andrewizbatista/create-context#readme",
+  "homepage": "https://github.com/andrewizbatista/context-schema#readme",
   "bugs": {
-    "url": "https://github.com/andrewizbatista/create-context/issues"
+    "url": "https://github.com/andrewizbatista/context-schema/issues"
   },
   "files": [
     "dist"

@@ -1,10 +1,10 @@
 <div align="center">
 
-# `create-context`
+# `context-schema`
 
-A streamlined way of creating React Context(s) based on a schema. Easy to use and with 0 dependencies (except React).
+A streamlined way of creating a `React.Context` based on a `schema`. Easy to use and with `0` dependencies.
 
-![create-context version](https://img.shields.io/npm/v/@andrewizbatista/create-context?style=flat-square&color=yellow&label=NPM) ![create-context minified size](https://img.shields.io/bundlephobia/min/@andrewizbatista/create-context?style=flat-square&color=blue&label=Minified+Size) ![create-context license](https://img.shields.io/npm/l/@andrewizbatista/create-context?style=flat-square&color=green&label=License)
+![context-schema version](https://img.shields.io/npm/v/@andrewizbatista/context-schema?style=flat-square&color=yellow&label=NPM) ![context-schema minified size](https://img.shields.io/bundlephobia/min/@andrewizbatista/context-schema?style=flat-square&color=blue&label=Minified+Size) ![context-schema license](https://img.shields.io/npm/l/@andrewizbatista/context-schema?style=flat-square&color=green&label=License)
 
 ![created by @andrewizbatista](https://img.shields.io/badge/Created%20By-@andrewizbatista-crimson?style=flat-square)
 
@@ -23,21 +23,21 @@ A streamlined way of creating React Context(s) based on a schema. Easy to use an
 
 ## <a name="getting-started"></a>Getting Started
 
-#### [`yarn`](https://yarnpkg.com/package/@andrewizbatista/create-context)
+#### [`yarn`](https://yarnpkg.com/package/@andrewizbatista/context-schema)
 
 ```
-yarn add @andrewizbatista/create-context
+yarn add @andrewizbatista/context-schema
 ```
 
-#### [`npm`](https://www.npmjs.com/package/@andrewizbatista/create-context)
+#### [`npm`](https://www.npmjs.com/package/@andrewizbatista/context-schema)
 
 ```
-npm install @andrewizbatista/create-context
+npm install @andrewizbatista/context-schema
 ```
 
 ## <a name="usage"></a>Usage
 
-In the following steps we are going to use a `UserContext` example. You can see more examples in the [`/examples`](https://github.com/andrewizbatista/create-context/tree/main/examples) folder.
+In the following steps we are going to use a `UserContext` example. You can see more examples in the [`/examples`](https://github.com/andrewizbatista/context-schema/tree/main/examples) folder.
 
 ### <a name="usage/1"></a>1. Creating your Context file
 
@@ -53,7 +53,7 @@ import {
   State,
   Actions,
   ContextSchema,
-} from '@andrewizbatista/create-context';
+} from '@andrewizbatista/context-schema';
 
 /**
  * Step 1: Define the `State` interface.
@@ -237,8 +237,8 @@ const MyUser = (userId: number) => {
 
 ## <a name="contributing"></a>Contributing
 
-Want to help? Feel free to open an [Issue](https://github.com/andrewizbatista/create-context/issues) or create a [Pull Request](https://github.com/andrewizbatista/create-context/pulls) and let's get started 🚀
+Want to help? Feel free to open an [Issue](https://github.com/andrewizbatista/context-schema/issues) or create a [Pull Request](https://github.com/andrewizbatista/context-schema/pulls) and let's get started 🚀
 
 ## <a name="license"></a>License
 
-[MIT](https://github.com/andrewizbatista/create-context/blob/main/LICENSE) © André Batista ([@andrewizbatista](https://github.com/andrewizbatista))
+[MIT](https://github.com/andrewizbatista/context-schema/blob/main/LICENSE) © André Batista ([@andrewizbatista](https://github.com/andrewizbatista))
