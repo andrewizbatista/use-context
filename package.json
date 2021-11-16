@@ -72,6 +72,11 @@
     "typescript": "^4.4.4"
   },
   "keywords": [
-    "react"
+    "react",
+    "context",
+    "hook",
+    "state",
+    "schema",
+    "store"
   ]
 }
