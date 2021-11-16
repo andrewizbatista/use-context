@@ -14,8 +14,10 @@ A streamlined way of creating React Context(s) based on a schema. Easy to use an
 
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-  - [Basic Example](#usage/basic)
-  - [Advanced Example](#usage/advanced)
+  - [1. Creating your Context file](#usage/1)
+  - [2. Understanding the `exports`](#usage/2)
+  - [3. Initializing the `Provider`](#usage/3)
+  - [4. Using the Context](#usage/4)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -35,25 +37,28 @@ npm install @andrewizbatista/create-context
 
 ## <a name="usage"></a>Usage
 
-### <a name="usage/basic"></a>Basic Example (`UserContext`)
+In the following steps we are going to use a `UserContext` example. You can see more examples in the [`/examples`](https://github.com/andrewizbatista/create-context/tree/main/examples) folder.
 
-```tsx
-// UserContext.tsx
+### <a name="usage/1"></a>1. Creating your Context file
 
-import React, { ReactNode } from 'react';
+First step is for you to create your context file. This file will export all the things you need to set and use that you just defined.
+
+In the example below it's a simple context that fetches and saves a user object.
+
+```ts
+// UserContext.ts
+
 import {
   createContextFromSchema,
   State,
   Actions,
-  ContextProvider,
   ContextSchema,
 } from '@andrewizbatista/create-context';
 
 /**
- * Step 1
+ * Step 1: Define the `State` interface.
  *
- * Define the `State` and `Actions` interfaces so you
- * can have a proper typed experience.
+ * This interface should represent the `state` object.
  */
 export interface UserState extends State {
   id: number;
@@ -61,15 +66,22 @@ export interface UserState extends State {
   email: string;
 }
 
+/**
+ * Step 2: Define the `Actions` interface.
+ *
+ * This interface should represent all the functions/methods
+ * of your context.
+ */
 export interface UserActions extends Actions {
   fetchUser: (id: number) => void;
   getFormattedUserLine: () => string;
 }
 
 /**
- * Step 2
+ * Step 3: Create the `schema`
  *
- * Define the `schema` of the Context you want to create.
+ * This schema is the heart of everything, define its initial state
+ * and all the actions.
  */
 const schema: ContextSchema<UserState, UserActions> = {
   initialState: {
@@ -93,10 +105,10 @@ const schema: ContextSchema<UserState, UserActions> = {
 };
 
 /**
- * Step 3
+ * Step 4: Create your context based on the `schema`
  *
- * Use the `createContextFromSchema` to generate the `Context`, `Provider` and `useContext`
- * for the context you are creating.
+ * Call the `createContextFromSchema` so it can generate the `Context`,
+ * the `Provider` a `useContext` hook.
  *
  * Tip: In ES6 you can rename your object keys!
  */
@@ -107,20 +119,118 @@ export const {
 } = createContextFromSchema<UserState, UserActions>(schema);
 ```
 
-### <a name="usage/advanced"></a>Advanced Example (`UserContext`)
+---
 
-In some cases you might want to have a **child Context/Provider** that uses the **parent State** as a value. For those cases you can pass a **render function as the children and use it to render the child Context/Provider**.
+### <a name="usage/2"></a>2. Understanding the `exports`
+
+The context file should have a few `exports` so you can import them across your app.
+
+```ts
+import {
+  /**
+   * The TypeScript interface of your `state`
+   */
+  UserState,
+  /**
+   * The TypeScript interface of your `actions`
+   */
+  UserActions,
+  /**
+   * The original React Context component (you shouldn't need to use this, because of the Provider below).
+   */
+  UserContext,
+  /**
+   * A smart React Context.Provider that handles all the state update/render logic
+   */
+  UserProvider,
+  /**
+   * A `useContext` hook to allow you to access the context anywhere
+   */
+  useUser,
+} from './UserContext';
+```
+
+---
+
+### <a name="usage/3"></a>3. Initializing the `Provider`
+
+Now that you have everything setup, you just need to wrap your app/component with the `UserProvider`.
 
 ```tsx
-// Example where the `UserPermissionsProvider` needs the `state` (user) from the parent `Context`
+/**
+ * Basic example of wrapping your app with the provider
+ */
+import { UserProvider } from 'contexts/UserContext';
+
+const App = () => (
+  <UserProvider>
+    <Navbar />
+    <Content />
+    <Footer />
+  </UserProvider>
+);
+```
+
+If you have a child `Context` that is dependent on the `state` of the parent one. Pass a render function as the `children` so you have access to the `state` object.
+
+```tsx
+/**
+ * Example where the child provider (`AuthenticationProvider`) is dependent
+ * on the `state` of the parent provider (`UserProvider`)
+ */
+import { UserProvider } from 'contexts/UserContext';
+import { AuthenticationProvider } from 'contexts/AuthenticationProvider'; // Just as an example
 
 const App = () => (
   <UserProvider>
     {({ state: userState }) => (
-      <UserPermissionsProvider value={userState}>{children}</UserPermissionsProvider>
+      <AuthenticationProvider value={userState}>
+        <Navbar />
+        <Content />
+        <Footer />
+      </AuthenticationProvider>
     )}
   </UserProvider>
 );
+```
+
+---
+
+### <a name="usage/4"></a>4. Using the Context
+
+You can access your context anywhere in your app by using the `useUser` hook
+
+```tsx
+import { useEffect } from 'react';
+import { useUser } from 'contexts/UserContext';
+
+const MyUser = (userId: number) => {
+  /**
+   * Accessing both the `state` and `actions`
+   * of your context.
+   */
+  const {
+    state: { username, email },
+    actions: { fetchUser },
+  } = useUser();
+
+  /**
+   * Calling `fetchUser` inside a `useEffect`
+   */
+  useEffect(() => {
+    fetchUser(userId);
+  }, [userId]);
+
+  /**
+   * Rendering some `state` props
+   */
+  return (
+    <Box>
+      <Text>{username}</Text>
+      <Text>{email}</Text>
+    </Box>
+  );
+};
 ```
 
 ## <a name="contributing"></a>Contributing
