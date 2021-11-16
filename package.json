@@ -29,7 +29,8 @@
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
     "lint:staged": "lint-staged",
-    "lint:typescript": "tsc --noEmit",
+    "lint:tsc": "tsc --noEmit",
+    "lint:tsc-files": "tsc-files --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "postinstall": "husky install",
@@ -67,6 +68,7 @@
     "react": "^17.0.2",
     "react-test-renderer": "^17.0.2",
     "semantic-release": "^18.0.0",
+    "tsc-files": "^1.1.2",
     "typescript": "^4.4.4"
   },
   "keywords": [
