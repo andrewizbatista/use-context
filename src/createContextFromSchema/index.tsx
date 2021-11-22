@@ -1,6 +1,13 @@
-import React, { createContext, useContext, Context as ReactContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { ContextProvider } from './ContextProvider';
-import { State, Actions, ContextSchema, ContextType, ProviderType } from '../types';
+import {
+  State,
+  Actions,
+  ContextSchema,
+  ContextType,
+  ProviderType,
+  CreateContextFromSchema,
+} from '../types';
 
 /**
  * Function that creates a React `Context` and its respective `useContext` hook based on a `schema`.
@@ -46,9 +53,3 @@ export const createContextFromSchema = <S extends State, A extends Actions>(
     useContext: () => useContext<ContextValue>(Context),
   };
 };
-
-interface CreateContextFromSchema<S extends State, A extends Actions> {
-  Context: ReactContext<ContextType<S, A>>;
-  Provider: (props: ProviderType<S>) => JSX.Element;
-  useContext: () => ContextType<S, A>;
-}

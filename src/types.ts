@@ -1,4 +1,4 @@
-import { ReactNode, Dispatch, SetStateAction } from 'react';
+import { ReactNode, Context, Dispatch, SetStateAction } from 'react';
 
 /**
  * State
@@ -34,5 +34,13 @@ export interface ProviderType<S extends State> {
 }
 
 type Children = ReactNode;
-
 type ChildrenFunc<S extends State> = (param: { state: S }) => Children;
+
+/**
+ * CreateContextFromSchema
+ */
+export interface CreateContextFromSchema<S extends State, A extends Actions> {
+  Context: Context<ContextType<S, A>>;
+  Provider: (props: ProviderType<S>) => JSX.Element;
+  useContext: () => ContextType<S, A>;
+}
