@@ -242,3 +242,5 @@ Want to help? Feel free to open an [Issue](https://github.com/andrewizbatista/us
 ## <a name="license"></a>License
 
 [MIT](https://github.com/andrewizbatista/use-context/blob/main/LICENSE) © André Batista ([@andrewizbatista](https://github.com/andrewizbatista))
+
+.
